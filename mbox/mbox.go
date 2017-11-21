@@ -4,10 +4,11 @@ package mbox
 
 import (
 	"bufio"
-	"chanrw"
 	"fmt"
 	"io"
 	"strings"
+
+	"github.com/bobg/chanrw"
 )
 
 // Mbox is a parser for a Unix mbox-style mail folder.
