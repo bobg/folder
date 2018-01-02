@@ -24,7 +24,7 @@ func New(name string) (*Maildir, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Maildir{name, append(files, files2...)}
+	return &Maildir{name, append(files, files2...)}, nil
 }
 
 func getfiles(dir, subdir string) ([]string, error) {
@@ -34,9 +34,9 @@ func getfiles(dir, subdir string) ([]string, error) {
 	}
 	var result []string
 	for _, info := range infos {
-		files = append(files, path.Join(subdir, info.Name()))
+		result = append(result, path.Join(subdir, info.Name()))
 	}
-	return files, nil
+	return result, nil
 }
 
 func (m *Maildir) Message() (io.Reader, func() error, error) {
