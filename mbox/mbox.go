@@ -35,9 +35,9 @@ func New(r io.Reader) (*Mbox, error) {
 // From_ lines in the message body as message separators.
 
 // Message satisfies the folder.Folder interface.
-func (m *Mbox) Message() (io.Reader, func() error, error) {
+func (m *Mbox) Message() (io.ReadCloser, error) {
 	if m.eof {
-		return nil, nil, nil
+		return nil, nil
 	}
 
 	lineCh := make(chan []byte)
@@ -60,12 +60,27 @@ func (m *Mbox) Message() (io.Reader, func() error, error) {
 		}
 		close(lineCh)
 	}()
-	closer := func() error {
-		for _, ok := <-lineCh; ok; {
-		}
-		return m.scanner.Err()
+	return &readCloser{
+		r:  chanrw.NewReader(lineCh),
+		m:  m,
+		ch: lineCh,
+	}, nil
+}
+
+type readCloser struct {
+	r  io.Reader
+	m  *Mbox
+	ch <-chan []byte
+}
+
+func (r *readCloser) Read(b []byte) (int, error) {
+	return r.r.Read(b)
+}
+
+func (r *readCloser) Close() error {
+	for _, ok := <-r.ch; ok; {
 	}
-	return chanrw.NewReader(lineCh), closer, nil
+	return r.m.scanner.Err()
 }
 
 func isFromLine(line string) bool {

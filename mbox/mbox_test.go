@@ -29,7 +29,7 @@ func TestMbox(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	msg1R, closer, err := m.Message()
+	msg1R, err := m.Message()
 	if err != nil {
 		t.Fatalf("getting message 1: %s", err)
 	}
@@ -40,11 +40,11 @@ func TestMbox(t *testing.T) {
 	if !sameMsg(string(msg1Bytes), msg1) {
 		t.Errorf("message 1: got:\n%s\nwant:\n%s", string(msg1Bytes), msg1)
 	}
-	err = closer()
+	err = msg1R.Close()
 	if err != nil {
 		t.Fatalf("closing message 1: %s", err)
 	}
-	msg2R, closer, err := m.Message()
+	msg2R, err := m.Message()
 	if err != nil {
 		t.Fatalf("getting message 2: %s", err)
 	}
@@ -55,11 +55,11 @@ func TestMbox(t *testing.T) {
 	if !sameMsg(string(msg2Bytes), msg2) {
 		t.Errorf("message 2: got:\n%s\nwant:\n%s", string(msg2Bytes), msg2)
 	}
-	err = closer()
+	err = msg2R.Close()
 	if err != nil {
 		t.Fatalf("closing message 2: %s", err)
 	}
-	msg3R, closer, err := m.Message()
+	msg3R, err := m.Message()
 	if err != nil {
 		t.Fatalf("getting message 3: %s", err)
 	}

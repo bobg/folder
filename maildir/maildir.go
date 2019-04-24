@@ -3,11 +3,12 @@ package maildir
 // TODO: add tests
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
 	"path"
+
+	"github.com/pkg/errors"
 )
 
 type Maildir struct {
@@ -39,16 +40,15 @@ func getfiles(dir, subdir string) ([]string, error) {
 	return result, nil
 }
 
-func (m *Maildir) Message() (io.Reader, func() error, error) {
+func (m *Maildir) Message() (io.ReadCloser, error) {
 	if len(m.files) == 0 {
-		return nil, nil, nil
+		return nil, nil
 	}
 	file := path.Join(m.name, m.files[0])
 	m.files = m.files[1:]
 	f, err := os.Open(file)
 	if err != nil {
-		return nil, nil, fmt.Errorf("opening %s: %s", file, err)
+		return nil, errors.Wrapf(err, "opening %s", file)
 	}
-	close := func() error { return f.Close() }
-	return f, close, nil
+	return f, nil
 }
