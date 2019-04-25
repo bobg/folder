@@ -1,4 +1,6 @@
 github.com/bobg/chanrw v0.0.0-20190424130733-d2b0be94fe58 h1:ujEl7bUa51ZxOk2eOdLWaP31TIAJc69VWhZXH9dZJYk=
 github.com/bobg/chanrw v0.0.0-20190424130733-d2b0be94fe58/go.mod h1:5XkzwRFot3ysCwfxy64EXarkeqS45kxaXS7JqP3L9CI=
+github.com/bobg/uncompress v0.0.0-20190425133243-fb8215c4d403 h1:xnPaupkLvTXRe5vnwAvan891LgmO3A5dRnobnvM66/E=
+github.com/bobg/uncompress v0.0.0-20190425133243-fb8215c4d403/go.mod h1:TvrZB/6Ks2WnTuFrc2RY11NDlkoOxi0Pvcs+hIendbs=
 github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

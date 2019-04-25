@@ -52,3 +52,5 @@ func (m *Maildir) Message() (io.ReadCloser, error) {
 	}
 	return f, nil
 }
+
+func (m *Maildir) Close() error { return nil }

@@ -15,6 +15,7 @@ import (
 type Mbox struct {
 	scanner *bufio.Scanner
 	eof     bool
+	r       io.Reader
 }
 
 func New(r io.Reader) (*Mbox, error) {
@@ -28,7 +29,7 @@ func New(r io.Reader) (*Mbox, error) {
 	} else {
 		eof = true
 	}
-	return &Mbox{scanner: s, eof: eof}, nil
+	return &Mbox{scanner: s, eof: eof, r: r}, nil
 }
 
 // TODO: add Content-Length parsing so as not to mistake unescaped
@@ -65,6 +66,13 @@ func (m *Mbox) Message() (io.ReadCloser, error) {
 		m:  m,
 		ch: lineCh,
 	}, nil
+}
+
+func (m *Mbox) Close() error {
+	if c, ok := m.r.(io.Closer); ok {
+		return c.Close()
+	}
+	return nil
 }
 
 type readCloser struct {
