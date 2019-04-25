@@ -7,9 +7,9 @@ import (
 
 	"github.com/bobg/uncompress"
 
-	"github.com/bobg/folder/maildir"
-	"github.com/bobg/folder/mbox"
-	"github.com/bobg/folder/tar"
+	"github.com/bobg/folder/v3/maildir"
+	"github.com/bobg/folder/v3/mbox"
+	"github.com/bobg/folder/v3/tar"
 )
 
 // Folder allows reading messages one by one.

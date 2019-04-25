@@ -1,4 +1,4 @@
-module github.com/bobg/folder/v2
+module github.com/bobg/folder/v3
 
 go 1.12
 
