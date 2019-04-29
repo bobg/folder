@@ -30,7 +30,7 @@ type Folder interface {
 func Open(name string) (Folder, error) {
 	m, err := maildir.New(name)
 	if err != nil {
-		return m, nil
+		return nil, err
 	}
 
 	r, err := uncompress.OpenFile(name)
@@ -56,7 +56,8 @@ func Open(name string) (Folder, error) {
 	}
 
 	if bytes.Equal(from, []byte("From ")) {
-		return mbox.New(rc)
+		m, err := mbox.New(rc)
+		return m, err
 	}
 
 	return tar.New(rc), nil
