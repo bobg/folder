@@ -29,8 +29,8 @@ type Folder interface {
 // trying one type after another and uncompressing on the fly if needed.
 func Open(name string) (Folder, error) {
 	m, err := maildir.New(name)
-	if err != nil {
-		return nil, err
+	if err == nil {
+		return m, nil
 	}
 
 	r, err := uncompress.OpenFile(name)
