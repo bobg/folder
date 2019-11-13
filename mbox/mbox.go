@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"strings"
 
 	"github.com/bobg/chanrw"
@@ -86,8 +87,7 @@ func (r *readCloser) Read(b []byte) (int, error) {
 }
 
 func (r *readCloser) Close() error {
-	for _, ok := <-r.ch; ok; {
-	}
+	io.Copy(ioutil.Discard, r.r) // flush
 	return r.m.scanner.Err()
 }
 
