@@ -1,5 +1,3 @@
-github.com/bobg/chanrw v1.0.0 h1:ELwUMkDlngwYaE36+PKaYbDPYxwa8I9Z+vca68au0N0=
-github.com/bobg/chanrw v1.0.0/go.mod h1:5XkzwRFot3ysCwfxy64EXarkeqS45kxaXS7JqP3L9CI=
 github.com/bobg/uncompress v1.0.0 h1:XTPAyWHXDavJ0O6gyHGNWujhw7ouLkoxfI29WtqcfbM=
 github.com/bobg/uncompress v1.0.0/go.mod h1:TvrZB/6Ks2WnTuFrc2RY11NDlkoOxi0Pvcs+hIendbs=
 github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=

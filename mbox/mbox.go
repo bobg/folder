@@ -8,8 +8,6 @@ import (
 	"io"
 	"io/ioutil"
 	"strings"
-
-	"github.com/bobg/chanrw"
 )
 
 // Mbox is a parser for a Unix mbox-style mail folder.
@@ -42,7 +40,8 @@ func (m *Mbox) Message() (io.ReadCloser, error) {
 		return nil, nil
 	}
 
-	lineCh := make(chan []byte)
+	pr, pw := io.Pipe()
+
 	go func() {
 		for {
 			eof := !m.scanner.Scan()
@@ -57,15 +56,14 @@ func (m *Mbox) Message() (io.ReadCloser, error) {
 			if isEscapedFromLine(line) {
 				line = line[1:] // unescape
 			}
-			lineCh <- []byte(line)
-			lineCh <- []byte("\r\n")
+			io.WriteString(pw, line)
+			io.WriteString(pw, "\r\n")
 		}
-		close(lineCh)
+		pw.Close()
 	}()
 	return &readCloser{
-		r:  chanrw.NewReader(lineCh),
-		m:  m,
-		ch: lineCh,
+		r: pr,
+		m: m,
 	}, nil
 }
 
@@ -77,9 +75,8 @@ func (m *Mbox) Close() error {
 }
 
 type readCloser struct {
-	r  io.Reader
-	m  *Mbox
-	ch <-chan []byte
+	r io.Reader
+	m *Mbox
 }
 
 func (r *readCloser) Read(b []byte) (int, error) {
