@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/bobg/uncompress"
+	"github.com/bobg/uncompress/v2"
 
 	"github.com/bobg/folder/v3/maildir"
 	"github.com/bobg/folder/v3/mbox"
@@ -33,7 +33,7 @@ func Open(name string) (Folder, error) {
 		return m, nil
 	}
 
-	r, err := uncompress.OpenFile(name)
+	r, err := uncompress.Open(name)
 	if err != nil {
 		return nil, err
 	}

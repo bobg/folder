@@ -1,4 +1,6 @@
-github.com/bobg/uncompress v1.0.0 h1:XTPAyWHXDavJ0O6gyHGNWujhw7ouLkoxfI29WtqcfbM=
-github.com/bobg/uncompress v1.0.0/go.mod h1:TvrZB/6Ks2WnTuFrc2RY11NDlkoOxi0Pvcs+hIendbs=
-github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
-github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/bobg/uncompress/v2 v2.0.0 h1:15SkLgcGZRqv1iZA6FRiQMu8bdhD55zqyYS+qA7cPf8=
+github.com/bobg/uncompress/v2 v2.0.0/go.mod h1:+djVYgznnwhNFcfLcpty1oXck55hKrlMtC8VD3+dCmc=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/ulikunitz/xz v0.5.10 h1:t92gobL9l3HE202wg3rlk19F6X+JOxl9BBrCCMYEYd8=
+github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
